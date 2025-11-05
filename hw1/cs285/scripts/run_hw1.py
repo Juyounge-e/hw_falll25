@@ -143,7 +143,7 @@ def run_training_loop(params):
                 # and replace paths[i]["action"] with these expert labels
                 for i in range(len(paths)):
                     paths[i]['action'] = expert_policy.get_action(paths[i]['observation'])
-                    
+
         total_envsteps += envsteps_this_batch
         # add collected data to replay buffer
         replay_buffer.add_rollouts(paths)
@@ -158,7 +158,8 @@ def run_training_loop(params):
           # HINT2: use np.random.permutation to sample random indices
           # HINT3: return corresponding data points from each array (i.e., not different indices from each array)
           # for imitation learning, we only need observations and actions.  
-          ob_batch, ac_batch = TODO
+          idx = np.random.permutation(len(replay_buffer))[:params['train_batch_size']]
+          ob_batch, ac_batch = replay_buffer.obs[idx], replay_buffer.acs[idx]
 
           # use the sampled data to train an agent
           train_log = actor.update(ob_batch, ac_batch)
