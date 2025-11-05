@@ -20,7 +20,6 @@ from torch import distributions
 from cs285.infrastructure import pytorch_util as ptu
 from cs285.policies.base_policy import BasePolicy
 
-
 def build_mlp(
         input_size: int,
         output_size: int,
