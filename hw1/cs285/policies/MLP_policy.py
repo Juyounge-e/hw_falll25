@@ -108,6 +108,7 @@ class MLPPolicySL(BasePolicy, nn.Module, metaclass=abc.ABCMeta):
             itertools.chain([self.logstd], self.mean_net.parameters()),
             self.learning_rate
         )
+        self.loss = nn.MSELoss()
 
     def save(self, filepath):
         """
